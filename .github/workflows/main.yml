@@ -19,7 +19,7 @@ jobs:
       - name: Login to ECR
         uses: docker/login-action@v1
         with:
-          registry: 866033678502.dkr.ecr.us-east-1.amazonaws.com
+          registry: ${{ secrets.AWS_REGISTRY }}
           username: ${{ secrets.AWS_ACCESS_KEY_ID }}
           password: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
@@ -27,6 +27,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: synthe/test-image-ecr:latest
+          tags: ${{ secrets.AWS_REGISTRY }}/test-image-ecr:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
