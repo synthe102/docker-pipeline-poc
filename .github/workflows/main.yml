@@ -34,8 +34,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: |
-            #${{ secrets.AWS_REGISTRY }}/test-image-ecr:${{ github.sha }}
-            ghcr.io/synthe102/test-image:${{ github.sha }}
+          tags: ghcr.io/synthe102/test-image:${{ github.sha }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
