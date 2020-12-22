@@ -26,7 +26,7 @@ jobs:
       
       - name: Set env
         run: |
-          echo "action_state=yellow" >> $GITHUB_ENV
+          echo "BRANCH_NAME=${{ github.ref }}" >> $GITHUB_ENV
 
       - name: Echo env
         run: |
