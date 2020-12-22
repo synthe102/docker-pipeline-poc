@@ -26,7 +26,10 @@ jobs:
       
       - name: Set env
         run: |
-          export BRANCH_NAME=$( echo ${{ github.ref }} | cut -d/ -f3 )
+          echo ${{ github.ref }} | cut -d/ -f3 >> $BRANCH_NAME
+
+      - name: Echo env
+        run: |
           echo $BRANCH_NAME
 
       - name: Build and push
