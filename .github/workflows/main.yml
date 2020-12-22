@@ -10,9 +10,6 @@ jobs:
   BuildAndPush:
     runs-on: ubuntu-latest
 
-    env:
-      BRANCH_NAME: ${{ echo ${{ github.ref }} | cut -d/ -f3 }}
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -26,6 +23,11 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.CR_PAT }}
+      
+      - name: Set env
+        run: |
+          export BRANCH_NAME=$( echo ${{ github.ref }} | cut -d/ -f3 )
+          echo $BRANCH_NAME
 
       - name: Build and push
         uses: docker/build-push-action@v2
