@@ -26,7 +26,7 @@ jobs:
       
       - name: Set env
         run: |
-          echo "test" >> $GITHUB_ENV
+          echo "action_state=yellow" >> $GITHUB_ENV
 
       - name: Echo env
         run: |
